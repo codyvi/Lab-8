@@ -11,6 +11,18 @@ app.use(express.json());
 
 //Data 
 
+let reserv = [
+  {
+    name: "David Cantu",
+    phone: "8115822465",
+    email: "myemail@gmail.com",
+    uid: 1
+  }
+]
+
+let esp = [
+]
+
 //Routes 
 app.get("/", function(req, res) {
     res.sendFile(path.join(__dirname, "./html/home.html"));
@@ -18,12 +30,31 @@ app.get("/", function(req, res) {
 
 app.get("/reserve", function(req, res){
   res.sendFile(path.join(__dirname, "./html/reserve.html"));
-})
+});
 
 app.get("/tables", function(req, res){
   res.sendFile(path.join(__dirname, "./html/tables.html"));
-})
+});
 
+app.get("/api/tables", function(req, res){
+  return res.json(reserv);
+});
+
+app.get("/api/waitlist", function(req, res){
+  return res.json(esp);
+});
+
+app.post("/api/tables", function(req, res){
+  let newReservation = req.body;
+  if(reserv.length < 5){
+    reserv.push(newReservation);
+    res.json(true);
+  }
+  else{
+    esp.push(newReservation);
+    res.json(false);
+  }
+});
 
 // Starts the server to begin listening
 // =============================================================

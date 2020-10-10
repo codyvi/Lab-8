@@ -70,9 +70,38 @@
 
 <!-- BELOW CODE IS CRITICAL. IT HANDLES HOW FORM DATA IS LOADED FROM OUR SERVER -->
 <script type="text/javascript">
+function getTables(){
+  $.get("/api/tables", function(data){
+    for(let i = 0; i < data.length; i++){
+      let listofTables = $("<li class='list-group-item mt-4'>");
+      listofTables.append($("<h2>").text(`Table #${i+1}`));
+      listofTables.append($("<hr>"));
+      listofTables.append($("<h2>").text("ID: " + data[i].uid));
+      listofTables.append($("<h2>").text("Name: " + data[i].name));
+      listofTables.append($("<h2>").text("Email: " + data[i].email));
+      listofTables.append($("<h2>").text("Phone: " + data[i].phone));
+      $("#tableList").append(listofTables);
+      }
+  });
+}
 
+function getWaitlist(){
+  $.get("/api/waitlist", function(data){
+    for(let i = 0; i < data.length; i++){
+      let listofTables = $("<li class='list-group-item mt-4'>");
+      listofTables.append($("<h2>").text(`Table #${i+1}`));
+      listofTables.append($("<hr>"));
+      listofTables.append($("<h2>").text("ID: " + data[i].uid));
+      listofTables.append($("<h2>").text("Name: " + data[i].name));
+      listofTables.append($("<h2>").text("Email: " + data[i].email));
+      listofTables.append($("<h2>").text("Phone: " + data[i].phone));
+      $("#waitList").append(listofTables);
+      }
+  });
+}
 
-
+getTables();
+getWaitlist();
 
 </script>
 

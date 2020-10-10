@@ -60,7 +60,7 @@
                 <label for="reserve-unique-id">Unique ID</label>
                 <input type="text" class="form-control" id="reserve-unique-id">
               </div>
-              <button type="submit" class="btn btn-primary submit">Submit</button>
+              <button type="submit" class="btn btn-primary submit" id="sbm">Submit</button>
             </form>
           </div>
         </div>
@@ -84,6 +84,23 @@
 
 <!-- BELOW CODE IS CRITICAL. IT HANDLES HOW FORM DATA IS SENT TO OUR SERVER -->
 <script type="text/javascript">
+$("#sbm").on("click", function(e){
+  e.preventDefault();
+  let newReserv = {
+    name: $("#reserve-name").val().trim(),
+    phone: $("#reserve-phone").val().trim(),
+    email: $("#reserve-email").val().trim(),
+    uid: $("#reserve-unique-id").val().trim()
+  };
 
+  $.post("/api/tables", newReserv, function(data){
+    if(data){
+      alert("Your reservation has been added!");
+    }
+    else{
+      alert("You have been added to the waitlist.");  
+    }
+  })
+});
 
 </script>
