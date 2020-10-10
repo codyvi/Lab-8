@@ -13,10 +13,10 @@ app.use(express.json());
 
 let reserv = [
   {
-    name: "David Cantu",
-    phone: "8115822465",
-    email: "myemail@gmail.com",
-    uid: 1
+    name: "David",
+    phone: "123456",
+    email: "e@gmail.com",
+    uid: "01"
   }
 ]
 
@@ -54,6 +54,11 @@ app.post("/api/tables", function(req, res){
     esp.push(newReservation);
     res.json(false);
   }
+});
+
+app.post("/api/clear", function(req, res){
+  reserv = []
+  esp = []
 });
 
 // Starts the server to begin listening

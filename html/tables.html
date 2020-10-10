@@ -100,6 +100,16 @@ function getWaitlist(){
   });
 }
 
+function clearAll(){
+  alert("Removing all data from tables!");
+  $.post("/api/clear", function(){
+    $("#waitList").empty();
+    $("#tableList").empty(); 
+  });
+}
+
+$("#clear").on("click", clearAll);
+
 getTables();
 getWaitlist();
 
